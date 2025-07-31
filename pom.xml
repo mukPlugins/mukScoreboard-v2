@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId></groupId>
-  <artifactId></artifactId>
-  <version></version>
+  <groupId>org.sattdev</groupId>
+  <artifactId>mukScoreboard-v2</artifactId>
+  <version>1.1</version>
   <packaging>jar</packaging>
 
-  <name></name>
+  <name>mukScoreboard-v2</name>
 
   <properties>
     <java.version>1.8</java.version>
@@ -17,6 +17,7 @@
   </properties>
 
   <build>
+    <finalName>${project.name}</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -40,6 +41,19 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>1.18.38</version>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
+      </plugin>
     </plugins>
     <resources>
       <resource>
@@ -49,7 +63,30 @@
     </resources>
   </build>
 
-  <repositories></repositories>
+  <repositories>
+    <repository>
+      <id>spigotmc-repo</id>
+      <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+    </repository>
+    <repository>
+      <id>placeholderapi</id>
+      <url>https://repo.extendedclip.com/releases/</url>
+    </repository>
+  </repositories>
 
-  <dependencies></dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>org.spigotmc</groupId>
+      <artifactId>spigot-api</artifactId>
+      <systemPath>C:/Users/Frost/Desktop/Projects/spigot-1.8.jar</systemPath>
+      <version>latest</version>
+      <scope>system</scope>
+    </dependency>
+    <dependency>
+      <groupId>me.clip</groupId>
+      <artifactId>placeholderapi</artifactId>
+      <version>2.11.6</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
 </project>

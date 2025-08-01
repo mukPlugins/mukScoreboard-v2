@@ -3,5 +3,4 @@ version: '${project.version}'
 main: org.sattdev.mukscoreboardv2.MukScoreboard_v2
 author: mukPlugins
 
-softdepend:
-  - softdepend: ["PlaceholderAPI"] #
+softdepend: ["PlaceholderAPI"] #

@@ -1,5 +1,6 @@
 package org.sattdev.mukscoreboardv2;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -30,7 +31,7 @@ public final class MukScoreboard_v2 extends JavaPlugin implements Listener {
         linhas.add("");
         linhas.add("&emukScoreboard-v2");
         linhas.add("");
-        linhas.add("&7Version: 1.0");
+        linhas.add("&7Version: 1.2");
         linhas.add("");
         linhas.add("&aAuthor: MukPlugins");
         linhas.add("");
@@ -41,8 +42,14 @@ public final class MukScoreboard_v2 extends JavaPlugin implements Listener {
         config.options().copyDefaults(true);
         saveConfig();
 
-
         getServer().getPluginManager().registerEvents(this, this);
+
+
+        Bukkit.getScheduler().runTaskTimer(this, () -> {
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                updateScoreboard(player);
+            }
+        }, 0L, 20L);
     }
 
     @Override
@@ -53,7 +60,10 @@ public final class MukScoreboard_v2 extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        updateScoreboard(player);
+    }
 
+    public void updateScoreboard(Player player) {
         Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
         Objective obj = sb.registerNewObjective("Scoreboard", "dummy");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
@@ -66,6 +76,9 @@ public final class MukScoreboard_v2 extends JavaPlugin implements Listener {
             String formatted = ChatColor.translateAlternateColorCodes('&', linha)
                     .replace("%player_name%", player.getName());
 
+            if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+                formatted = PlaceholderAPI.setPlaceholders(player, formatted);
+            }
 
             if (formatted.trim().isEmpty()) {
                 formatted = ChatColor.values()[score % ChatColor.values().length] + "" + ChatColor.RESET;

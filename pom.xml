@@ -78,7 +78,7 @@
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot-api</artifactId>
-      <systemPath>C:/Users/Frost/Desktop/Projects/spigot-1.8.jar</systemPath>
+      <systemPath>C:/Users/satt/Documents/spigot-jars/spigot-1.8.8.jar</systemPath>
       <version>latest</version>
       <scope>system</scope>
     </dependency>
